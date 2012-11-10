@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false">
+  <class name="coms.datatransfer.UserDTO" table="user">
+    <meta attribute="class-description"> User details </meta>
+    <id name="uid" type="int" column="uid">
+      <generator class="native" />
+    </id>
+    <property name="username" type="string" not-null="true" length="40" column="username" />
+    <property name="password" type="string" not-null="true" length="40" column="password" />
+    <property name="email" type="string" not-null="true" length="50" column="email" />  
+    <property name="telephone" type="long" not-null="false" column="telephone" />  
+    <property name="mobile" type="long" not-null="false" column="mobile" />  
+    <property name="workAddress" type="string" not-null="false" length="200" column="work_address" />  
+    <property name="contactAddress" type="string" not-null="false" length="200" column="contact_address" />  
+    <property name="blog" type="string" not-null="false" length="100" column="blog" />  
+    <property name="website" type="string" not-null="false" length="100" column="website" />  
+  </class>
+</hibernate-mapping>
