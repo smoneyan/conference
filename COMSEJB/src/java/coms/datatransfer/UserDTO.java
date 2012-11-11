@@ -14,7 +14,27 @@ public class UserDTO implements Serializable{
   private int uid;
   private String username, password, email, workAddress, contactAddress, blog, website;
   private Long  telephone, mobile;
+  private RoleDTO userRole;
 
+  public UserDTO() {
+  }
+  
+  
+  public UserDTO(String username, String password, String email, String workAddress, String contactAddress, String blog, String website, Long telephone, Long mobile, RoleDTO userRole) {
+    this.username = username;
+    this.password = password;
+    this.email = email;
+    this.workAddress = workAddress;
+    this.contactAddress = contactAddress;
+    this.blog = blog;
+    this.website = website;
+    this.telephone = telephone;
+    this.mobile = mobile;
+    this.userRole = userRole;
+  }
+
+  
+  
   /**
    * @return the uid
    */
@@ -155,9 +175,23 @@ public class UserDTO implements Serializable{
     this.mobile = mobile;
   }
 
+  /**
+   * @return the userRole
+   */
+  public RoleDTO getUserRole() {
+    return userRole;
+  }
+
+  /**
+   * @param userRole the userRole to set
+   */
+  public void setUserRole(RoleDTO userRole) {
+    this.userRole = userRole;
+  }
+
   @Override
   public String toString() {
-    return "UserDTO{" + "uid=" + uid + ", username=" + username + ", password=" + password + ", email=" + email + ", workAddress=" + workAddress + ", contactAddress=" + contactAddress + ", blog=" + blog + ", website=" + website + ", telephone=" + telephone + ", mobile=" + mobile + '}';
+    return "UserDTO{" + "uid=" + uid + ", username=" + username + ", password=" + password + ", email=" + email + ", workAddress=" + workAddress + ", contactAddress=" + contactAddress + ", blog=" + blog + ", website=" + website + ", telephone=" + telephone + ", mobile=" + mobile + ", userRole=" + userRole + '}';
   }
   
   

@@ -17,5 +17,6 @@
     <property name="contactAddress" type="string" not-null="false" length="200" column="contact_address" />  
     <property name="blog" type="string" not-null="false" length="100" column="blog" />  
     <property name="website" type="string" not-null="false" length="100" column="website" />  
+    <many-to-one name="userRole" class="coms.datatransfer.RoleDTO" column="rid" not-null="true" cascade="none"  lazy="false"/>
   </class>
 </hibernate-mapping>

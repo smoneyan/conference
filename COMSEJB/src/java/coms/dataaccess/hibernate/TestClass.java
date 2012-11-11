@@ -21,8 +21,9 @@ public class TestClass {
       UserDAO userDao = DAOFactory.getInstance().getUserDAO();
       UserDTO[] users = userDao.findAllUser();
       for(UserDTO user : users){
-        System.out.print(user);
+        System.out.println(user);
       }
+      
      } catch (DAOException ex) {
       Logger.getLogger(TestClass.class.getName()).log(Level.SEVERE, null, ex);
     }

@@ -3,6 +3,7 @@ package coms.dataaccess;
 public abstract class DAOFactory {
    
     public abstract UserDAO getUserDAO();
+    public abstract RoleDAO getRoleDAO();
     
     private static DAOFactory instance;
     
