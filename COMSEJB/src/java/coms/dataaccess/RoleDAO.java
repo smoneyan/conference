@@ -12,6 +12,14 @@ import coms.datatransfer.UserDTO;
  * @author subu
  */
 public interface RoleDAO {
-    public RoleDTO[] findAllRole() throws DAOException;
 
+  public RoleDTO[] findAllRole() throws DAOException;
+
+  public RoleDTO findRole(String roleName) throws DAOException;
+
+  public void insertRole(RoleDTO role) throws DAOException;
+
+  public void updateRole(RoleDTO role) throws DAOException;
+
+  public void deleteRole(RoleDTO role) throws DAOException;
 }

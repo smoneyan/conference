@@ -5,9 +5,10 @@
 package coms.dataaccess.hibernate;
 
 import coms.dataaccess.DAOException;
-import coms.dataaccess.RoleDAO;
+import coms.dataaccess.TopicDAO;
+import coms.datatransfer.ConferenceDTO;
 import coms.datatransfer.RoleDTO;
-import coms.datatransfer.UserDTO;
+import coms.datatransfer.TopicDTO;
 import coms.exceptions.HibernateAccessLayerException;
 import java.util.List;
 import java.util.logging.Level;
@@ -17,13 +18,13 @@ import java.util.logging.Logger;
  *
  * @author subu
  */
-public class RoleDAOImpl extends AbstractDao implements RoleDAO {
+public class TopicDAOImpl extends AbstractDao implements TopicDAO {
 
   @Override
-  public RoleDTO[] findAllRole() throws DAOException {
+  public TopicDTO[] findAllTopic() throws DAOException {
     try {
-      List roles = super.findAll(RoleDTO.class);
-      RoleDTO[] result = new RoleDTO[roles.size()];
+      List roles = super.findAll(TopicDTO.class);
+      TopicDTO[] result = new TopicDTO[roles.size()];
       roles.toArray(result);
       return (result);
     } catch (Throwable t) {
@@ -33,21 +34,22 @@ public class RoleDAOImpl extends AbstractDao implements RoleDAO {
   }
 
   @Override
-  public RoleDTO findRole(String roleName) throws DAOException {
+  public TopicDTO findTopic(String title) throws DAOException {
     try {
-      Logger.getLogger(getClass().getName()).log(Level.INFO, "Finding User" + roleName);
-      RoleDTO p = (RoleDTO) super.find(RoleDTO.class, roleName);
+      Logger.getLogger(getClass().getName()).log(Level.INFO, "Finding topic" + title);
+      TopicDTO p = (TopicDTO) super.find(TopicDTO.class, title);
       return p;
     } catch (Throwable t) {
       throw new HibernateAccessLayerException(t.toString());
 
     }
+
   }
 
   @Override
-  public void insertRole(RoleDTO role) throws DAOException {
-    try {
-      super.saveOrUpdate(role);
+  public void insertTopic(TopicDTO topic) throws DAOException {
+     try {
+      super.saveOrUpdate(topic);
     } catch (Throwable t) {
       t.printStackTrace();
       throw new HibernateAccessLayerException(t.toString());
@@ -55,9 +57,9 @@ public class RoleDAOImpl extends AbstractDao implements RoleDAO {
   }
 
   @Override
-  public void updateRole(RoleDTO role) throws DAOException {
+  public void updateTopic(TopicDTO topic) throws DAOException {
     try {
-      super.saveOrUpdate(role);
+      super.saveOrUpdate(topic);
     } catch (Throwable t) {
       t.printStackTrace();
       throw new HibernateAccessLayerException(t.toString());
@@ -65,10 +67,10 @@ public class RoleDAOImpl extends AbstractDao implements RoleDAO {
   }
 
   @Override
-  public void deleteRole(RoleDTO role) throws DAOException {
-    try {
-      Logger.getLogger(getClass().getName()).log(Level.INFO, "Deleting User" + role.getRoleName());
-      super.delete(role);
+  public void deleteTopic(TopicDTO topic) throws DAOException {
+     try {
+      Logger.getLogger(getClass().getName()).log(Level.INFO, "Deleting topic" + topic.getTitle());
+      super.delete(topic);
     } catch (Throwable t) {
       throw new HibernateAccessLayerException(t.toString());
 

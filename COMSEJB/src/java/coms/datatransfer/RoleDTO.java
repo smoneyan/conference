@@ -12,17 +12,15 @@ import java.io.Serializable;
  */
 public class RoleDTO implements Serializable{
   private Integer rid;
-  private String role_name;
+  private String roleName;
 
   public RoleDTO() {
   }
-  
 
-  
-  public RoleDTO(String role_name) {
-    this.role_name = role_name;
+  public RoleDTO(String roleName) {
+    this.roleName = roleName;
   }
-
+  
   
   /**
    * @return the rid
@@ -38,23 +36,25 @@ public class RoleDTO implements Serializable{
     this.rid = rid;
   }
 
-  /**
-   * @return the role_name
-   */
-  public String getRole_name() {
-    return role_name;
-  }
-
-  /**
-   * @param role_name the role_name to set
-   */
-  public void setRole_name(String role_name) {
-    this.role_name = role_name;
-  }
+  
 
   @Override
   public String toString() {
-    return "RoleDTO{" + "rid=" + rid + ", role_name=" + role_name + '}';
+    return "RoleDTO{" + "rid=" + getRid() + ", roleName=" + roleName + '}';
+  }
+
+  /**
+   * @return the roleName
+   */
+  public String getRoleName() {
+    return roleName;
+  }
+
+  /**
+   * @param roleName the roleName to set
+   */
+  public void setRoleName(String roleName) {
+    this.roleName = roleName;
   }
  
   

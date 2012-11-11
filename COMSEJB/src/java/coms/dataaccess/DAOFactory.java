@@ -4,6 +4,8 @@ public abstract class DAOFactory {
    
     public abstract UserDAO getUserDAO();
     public abstract RoleDAO getRoleDAO();
+    public abstract TopicDAO getTopicDAO();
+    public abstract ConferenceDAO getConferenceDAO();
     
     private static DAOFactory instance;
     

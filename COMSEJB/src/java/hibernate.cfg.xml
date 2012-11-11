@@ -47,5 +47,7 @@
     <!-- Mapping files -->
     <mapping resource="user.hbm.xml" />
     <mapping resource="role.hbm.xml" />
+    <mapping resource="topic.hbm.xml" />
+    <mapping resource="conference.hbm.xml" />
   </session-factory>
 </hibernate-configuration>

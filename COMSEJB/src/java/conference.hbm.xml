@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false">
+  <class name="coms.datatransfer.ConferenceDTO" table="conference">
+    <meta attribute="class-description"> Conference details </meta>
+    <id name="confId" type="int" column="conf_id">
+      <generator class="native" />
+    </id>
+    <property name="title" not-null="true" length="50" column="title" />
+    <property name="description"  not-null="true" length="400" column="description" />
+    <property name="location" not-null="true" length="50" column="location" />  
+    <property name="confDate"  not-null="false" column="conf_date" />  
+    <property name="submissionDate" not-null="false" column="submission_last_dt" />  
+    <property name="reviewDate" not-null="false" column="review_last_dt" />  
+    <property name="lastUpdatedDate" not-null="false" column="last_updated" />  
+    <set name="topics" table="conference_topic" cascade="none">
+      <key column="conf_id" />
+      <many-to-many column="topic_id" class="coms.datatransfer.TopicDTO" />
+    </set>
+  </class>
+</hibernate-mapping>
