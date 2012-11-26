@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package coms.delegates;
+package coms.locator;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,5 +27,16 @@ public class EJBLocator {
         }
     }
     public static EJBLocator getInstance(){return locator;}
+    
+//    public ComsManagerBeanLocal lookupComsManagerBean(){
+//      try{
+//        return (ComsManagerBeanLocal) initCtx.lookup("Bean30");
+//      }catch(NamingException ne){
+//        System.out.print("cannot find the context");
+//        ne.printStackTrace();
+//      }
+//    return null;
+//    }
+
     
 }

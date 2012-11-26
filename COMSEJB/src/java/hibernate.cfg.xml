@@ -49,5 +49,7 @@
     <mapping resource="role.hbm.xml" />
     <mapping resource="topic.hbm.xml" />
     <mapping resource="conference.hbm.xml" />
+    <mapping resource="schedule.hbm.xml" />
+    <mapping resource="item_type.hbm.xml" />
   </session-factory>
 </hibernate-configuration>

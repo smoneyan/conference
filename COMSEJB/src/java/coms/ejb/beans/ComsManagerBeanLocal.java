@@ -4,6 +4,7 @@
  */
 package coms.ejb.beans;
 
+import coms.datatransfer.ConferenceDTO;
 import javax.ejb.Local;
 
 /**
@@ -12,5 +13,7 @@ import javax.ejb.Local;
  */
 @Local
 public interface ComsManagerBeanLocal {
+
+  java.util.List<ConferenceDTO> getAllConference();
   
 }
