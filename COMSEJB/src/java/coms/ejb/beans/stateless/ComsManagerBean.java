@@ -4,6 +4,7 @@
  */
 package coms.ejb.beans.stateless;
 
+import coms.ejb.beans.ComsManagerBeanLocal;
 import javax.ejb.Stateless;
 
 /**
