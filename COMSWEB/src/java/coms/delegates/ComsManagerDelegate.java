@@ -3,27 +3,53 @@
  * and open the template in the editor.
  */
 package coms.delegates;
+import coms.iface.ComsManagerRemote;
+import coms.iface.ComsMessageRemote;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
+
 
 /**
- *
- * @author subu
+ * 
+ * @author ISS
  */
 public class ComsManagerDelegate {
 
-//  private ComsManagerBeanLocal bean = null;
-  
-  public ComsManagerDelegate() {
-//    this.bean = lookupComsManagerBean();
+    
+    private ComsMessageRemote comsMessage;
 
-            
-  }
-  
-//  private ComsManagerBeanLocal lookupComsManagerBean() {
-//    EJBLocator locator = EJBLocator.getInstance();
-//    return locator.lookupComsManagerBean();
-//  }
-//
-//  public List<ConferenceDTO> getAllConference() {
-//    return bean.getAllConference();
-//  }
+    /** Creates a new instance of FloristDelegate */
+    public ComsManagerDelegate() {
+        
+        comsMessage = lookupComsMessageBean();
+    }
+
+    public void notifyEvents()
+    {
+        
+        List<String> rec1=new ArrayList<String>();
+        rec1.add("binnyal@gmail.com");
+        
+    comsMessage.sendJMSMessageToEmailMessage(rec1,"Test Message from coms");
+    
+    
+    }
+
+    private ComsMessageRemote lookupComsMessageBean() {
+        try {
+            Context c = new InitialContext();
+            return (ComsMessageRemote) c.lookup("ComsMessageBean");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
 }
+

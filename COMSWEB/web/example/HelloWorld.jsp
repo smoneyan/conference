@@ -28,6 +28,15 @@
 
             </li>
         </ul>
+                <s:form action="email"><table width="100%">
+			<tr>
+				<td colspan="2" align="center"><input type="submit"
+					value="<s:text name="email"/>" 
+					align="middle" /> &nbsp;&nbsp;&nbsp; <input type="reset"
+					value="<s:text name="reset"/>" class="butStnd"
+					align="middle" /></td>
+			</tr>
+		</table></s:form>
     </body>
 </html>
 

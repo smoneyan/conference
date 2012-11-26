@@ -7,4 +7,13 @@
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">
     </package>
+    
+     <package name="struts2" extends="default" namespace="/">
+        
+         <action name="email" class="coms.action.EmailAction">
+             <result name="success"  >HelloWorld.jsp</result>
+        </action>
+        
+    </package>
+
 </struts>

@@ -16,18 +16,16 @@ import org.apache.struts2.interceptor.SessionAware;
  * @author ALPHY
  */
 public class ComsSupport extends ActionSupport implements
-		ServletRequestAware, SessionAware, Preparable{
-
+		ServletRequestAware, SessionAware{
+protected HttpServletRequest request;
+protected Map<String, Object> session;
     public void setServletRequest(HttpServletRequest hsr) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.request = hsr;
     }
 
     public void setSession(Map<String, Object> map) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.session = map;
     }
 
-    public void prepare() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-    
+  
 }
