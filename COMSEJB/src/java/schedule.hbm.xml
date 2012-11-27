@@ -11,5 +11,12 @@
     <property name="scheduleName" not-null="true" column="title" />
     <property name="startTime" not-null="true" column="start_dt" />
     <property name="endTime" not-null="true" column="end_dt" />
-    </class>
+    <many-to-one name="conference" class="com.datatransfer.ConferenceDTO" fetch="select">
+      <column name="conf_id" not-null="true" />
+    </many-to-one>
+    <many-to-one name="itemType" class="com.datatransferItemTypeDTO" fetch="select">
+      <column name="type_id" not-null="true" />
+    </many-to-one>    
+    
+  </class>
 </hibernate-mapping>

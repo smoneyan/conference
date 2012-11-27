@@ -12,6 +12,8 @@ public class ScheduleDTO {
   private int scheduleId;
   private String scheduleName;
   private int startTime, endTime;
+  private ConferenceDTO conference;
+  private ItemTypeDTO itemType;
 
   public ScheduleDTO() {
   }
@@ -53,6 +55,22 @@ public class ScheduleDTO {
 
   public void setScheduleName(String scheduleName) {
     this.scheduleName = scheduleName;
+  }
+
+  public ConferenceDTO getConference() {
+    return conference;
+  }
+
+  public void setConference(ConferenceDTO conference) {
+    this.conference = conference;
+  }
+
+  public ItemTypeDTO getItemType() {
+    return itemType;
+  }
+
+  public void setItemType(ItemTypeDTO itemType) {
+    this.itemType = itemType;
   }
 
   @Override

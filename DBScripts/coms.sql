@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 27, 2012 at 02:00 AM
+-- Generation Time: Nov 27, 2012 at 05:53 PM
 -- Server version: 5.5.28
 -- PHP Version: 5.3.10-1ubuntu3.4
 
@@ -19,13 +19,37 @@ SET time_zone = "+00:00";
 --
 -- Database: `coms`
 --
+DROP DATABASE `coms`;
+CREATE DATABASE `coms` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `coms`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `conf_item_type`
+--
+
+DROP TABLE IF EXISTS `conf_item_type`;
+CREATE TABLE IF NOT EXISTS `conf_item_type` (
+  `type_id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(30) NOT NULL,
+  PRIMARY KEY (`type_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `conf_item_type`
+--
+
+INSERT INTO `conf_item_type` (`type_id`, `title`) VALUES
+(1, 'paper'),
+(2, 'workshop'),
+(3, 'symposium'),
+(4, 'tutorial');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `conference`
---
--- Creation: Nov 20, 2012 at 12:29 PM
 --
 
 DROP TABLE IF EXISTS `conference`;
@@ -55,8 +79,6 @@ INSERT INTO `conference` (`conf_id`, `title`, `description`, `location`, `conf_d
 
 --
 -- Table structure for table `conference_topic`
---
--- Creation: Nov 20, 2012 at 12:29 PM
 --
 
 DROP TABLE IF EXISTS `conference_topic`;
@@ -89,64 +111,7 @@ INSERT INTO `conference_topic` (`id`, `conf_id`, `topic_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `conf_item_type`
---
--- Creation: Nov 20, 2012 at 12:29 PM
---
-
-DROP TABLE IF EXISTS `conf_item_type`;
-CREATE TABLE IF NOT EXISTS `conf_item_type` (
-  `type_id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(30) NOT NULL,
-  PRIMARY KEY (`type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `conf_item_type`
---
-
-INSERT INTO `conf_item_type` (`type_id`, `title`) VALUES
-(1, 'paper'),
-(2, 'workshop'),
-(3, 'symposium'),
-(4, 'tutorial');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `conf_schedule`
---
--- Creation: Nov 20, 2012 at 12:29 PM
---
-
-DROP TABLE IF EXISTS `conf_schedule`;
-CREATE TABLE IF NOT EXISTS `conf_schedule` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `conf_id` int(11) NOT NULL,
-  `schedule_id` int(11) NOT NULL,
-  `type_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `schedule_id` (`schedule_id`),
-  KEY `conf_id` (`conf_id`),
-  KEY `type_id` (`type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- RELATIONS FOR TABLE `conf_schedule`:
---   `conf_id`
---       `conference_topic` -> `id`
---   `schedule_id`
---       `schedule` -> `schedule_id`
---   `type_id`
---       `conf_item_type` -> `type_id`
---
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `event_log`
---
--- Creation: Nov 20, 2012 at 12:29 PM
 --
 
 DROP TABLE IF EXISTS `event_log`;
@@ -174,8 +139,6 @@ CREATE TABLE IF NOT EXISTS `event_log` (
 --
 -- Table structure for table `file`
 --
--- Creation: Nov 20, 2012 at 12:29 PM
---
 
 DROP TABLE IF EXISTS `file`;
 CREATE TABLE IF NOT EXISTS `file` (
@@ -191,9 +154,31 @@ CREATE TABLE IF NOT EXISTS `file` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `item_comments`
+-- Table structure for table `item_co_authors`
 --
--- Creation: Nov 20, 2012 at 12:29 PM
+
+DROP TABLE IF EXISTS `item_co_authors`;
+CREATE TABLE IF NOT EXISTS `item_co_authors` (
+  `author_id` int(11) NOT NULL AUTO_INCREMENT,
+  `item_id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  PRIMARY KEY (`author_id`),
+  KEY `item_id` (`item_id`),
+  KEY `uid` (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- RELATIONS FOR TABLE `item_co_authors`:
+--   `item_id`
+--       `item_submission` -> `item_id`
+--   `uid`
+--       `user` -> `uid`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item_comments`
 --
 
 DROP TABLE IF EXISTS `item_comments`;
@@ -219,35 +204,7 @@ CREATE TABLE IF NOT EXISTS `item_comments` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `item_co_authors`
---
--- Creation: Nov 20, 2012 at 12:29 PM
---
-
-DROP TABLE IF EXISTS `item_co_authors`;
-CREATE TABLE IF NOT EXISTS `item_co_authors` (
-  `author_id` int(11) NOT NULL AUTO_INCREMENT,
-  `item_id` int(11) NOT NULL,
-  `uid` int(11) NOT NULL,
-  PRIMARY KEY (`author_id`),
-  KEY `item_id` (`item_id`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- RELATIONS FOR TABLE `item_co_authors`:
---   `item_id`
---       `item_submission` -> `item_id`
---   `uid`
---       `user` -> `uid`
---
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `item_reviewer`
---
--- Creation: Nov 20, 2012 at 12:29 PM
 --
 
 DROP TABLE IF EXISTS `item_reviewer`;
@@ -273,8 +230,6 @@ CREATE TABLE IF NOT EXISTS `item_reviewer` (
 --
 -- Table structure for table `item_status`
 --
--- Creation: Nov 20, 2012 at 12:29 PM
---
 
 DROP TABLE IF EXISTS `item_status`;
 CREATE TABLE IF NOT EXISTS `item_status` (
@@ -287,8 +242,6 @@ CREATE TABLE IF NOT EXISTS `item_status` (
 
 --
 -- Table structure for table `item_submission`
---
--- Creation: Nov 20, 2012 at 12:29 PM
 --
 
 DROP TABLE IF EXISTS `item_submission`;
@@ -315,12 +268,12 @@ CREATE TABLE IF NOT EXISTS `item_submission` (
 
 --
 -- RELATIONS FOR TABLE `item_submission`:
+--   `schedule_id`
+--       `schedule` -> `schedule_id`
 --   `type_id`
 --       `conf_item_type` -> `type_id`
 --   `conf_id`
 --       `conference` -> `conf_id`
---   `schedule_id`
---       `conf_schedule` -> `schedule_id`
 --   `status`
 --       `item_status` -> `status_id`
 --   `submitted_by`
@@ -333,8 +286,6 @@ CREATE TABLE IF NOT EXISTS `item_submission` (
 
 --
 -- Table structure for table `role`
---
--- Creation: Nov 20, 2012 at 12:29 PM
 --
 
 DROP TABLE IF EXISTS `role`;
@@ -360,32 +311,32 @@ INSERT INTO `role` (`rid`, `role_name`) VALUES
 --
 -- Table structure for table `schedule`
 --
--- Creation: Nov 26, 2012 at 05:43 PM
---
 
 DROP TABLE IF EXISTS `schedule`;
 CREATE TABLE IF NOT EXISTS `schedule` (
   `schedule_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) NOT NULL,
+  `conf_id` int(11) NOT NULL,
+  `type_id` int(11) NOT NULL,
   `start_dt` int(11) NOT NULL,
   `end_dt` int(11) NOT NULL,
-  PRIMARY KEY (`schedule_id`)
+  PRIMARY KEY (`schedule_id`),
+  KEY `conf_id` (`conf_id`),
+  KEY `type_id` (`type_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
--- Dumping data for table `schedule`
+-- RELATIONS FOR TABLE `schedule`:
+--   `type_id`
+--       `conf_item_type` -> `type_id`
+--   `conf_id`
+--       `conference` -> `conf_id`
 --
-
-INSERT INTO `schedule` (`schedule_id`, `title`, `start_dt`, `end_dt`) VALUES
-(10, 'asasd', 12123, 123123),
-(11, 'fsafasd', 123123, 234234);
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `topic`
---
--- Creation: Nov 20, 2012 at 12:29 PM
 --
 
 DROP TABLE IF EXISTS `topic`;
@@ -407,8 +358,6 @@ INSERT INTO `topic` (`tid`, `title`) VALUES
 
 --
 -- Table structure for table `user`
---
--- Creation: Nov 20, 2012 at 12:29 PM
 --
 
 DROP TABLE IF EXISTS `user`;
@@ -462,14 +411,6 @@ ALTER TABLE `conference_topic`
   ADD CONSTRAINT `FK67F9304CF89E76DC` FOREIGN KEY (`conf_id`) REFERENCES `conference` (`conf_id`);
 
 --
--- Constraints for table `conf_schedule`
---
-ALTER TABLE `conf_schedule`
-  ADD CONSTRAINT `conf_schedule_ibfk_1` FOREIGN KEY (`conf_id`) REFERENCES `conference_topic` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `conf_schedule_ibfk_2` FOREIGN KEY (`schedule_id`) REFERENCES `schedule` (`schedule_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `conf_schedule_ibfk_3` FOREIGN KEY (`type_id`) REFERENCES `conf_item_type` (`type_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
 -- Constraints for table `event_log`
 --
 ALTER TABLE `event_log`
@@ -477,18 +418,18 @@ ALTER TABLE `event_log`
   ADD CONSTRAINT `event_log_ibfk_2` FOREIGN KEY (`recepient_id`) REFERENCES `user` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `item_comments`
---
-ALTER TABLE `item_comments`
-  ADD CONSTRAINT `item_comments_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `item_submission` (`item_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `item_comments_ibfk_2` FOREIGN KEY (`submitted_by`) REFERENCES `user` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
 -- Constraints for table `item_co_authors`
 --
 ALTER TABLE `item_co_authors`
   ADD CONSTRAINT `item_co_authors_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `item_submission` (`item_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `item_co_authors_ibfk_2` FOREIGN KEY (`uid`) REFERENCES `user` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `item_comments`
+--
+ALTER TABLE `item_comments`
+  ADD CONSTRAINT `item_comments_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `item_submission` (`item_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `item_comments_ibfk_2` FOREIGN KEY (`submitted_by`) REFERENCES `user` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `item_reviewer`
@@ -501,12 +442,19 @@ ALTER TABLE `item_reviewer`
 -- Constraints for table `item_submission`
 --
 ALTER TABLE `item_submission`
+  ADD CONSTRAINT `item_submission_ibfk_7` FOREIGN KEY (`schedule_id`) REFERENCES `schedule` (`schedule_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `item_submission_ibfk_1` FOREIGN KEY (`type_id`) REFERENCES `conf_item_type` (`type_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `item_submission_ibfk_2` FOREIGN KEY (`conf_id`) REFERENCES `conference` (`conf_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `item_submission_ibfk_3` FOREIGN KEY (`schedule_id`) REFERENCES `conf_schedule` (`schedule_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `item_submission_ibfk_4` FOREIGN KEY (`status`) REFERENCES `item_status` (`status_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `item_submission_ibfk_5` FOREIGN KEY (`submitted_by`) REFERENCES `user` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `item_submission_ibfk_6` FOREIGN KEY (`fid`) REFERENCES `file` (`fid`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `schedule`
+--
+ALTER TABLE `schedule`
+  ADD CONSTRAINT `schedule_ibfk_2` FOREIGN KEY (`type_id`) REFERENCES `conf_item_type` (`type_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`conf_id`) REFERENCES `conference` (`conf_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `user`

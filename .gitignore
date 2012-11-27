@@ -31,9 +31,8 @@
 /ComsEJBInterface/nbproject/private/
 /ComsEJBInterface/build/
 /ComsEJBInterface/dist/
-/BeanInterface/nbproject/private/
-/BeanInterface/build/
-/BeanInterface/dist/
-/ComsInterfaces/nbproject/private/
-/ComsInterfaces/dist/
-/ComsInterfaces/build/
+/COMSIFACE/dist/
+/COMSIFACE/build/
+/COMSIFACE/nbproject/private/
+*.*~
+

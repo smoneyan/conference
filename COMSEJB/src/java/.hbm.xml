@@ -19,11 +19,12 @@
       <key column="conf_id" />
       <many-to-many column="topic_id" class="coms.datatransfer.TopicDTO" />
     </set>
-    <set name="schedules" table="schedule" lazy="true" fetch="select">
+    <set name="confSchedules" table="conf_schedule" 
+          inverse="true" lazy="true" fetch="select">
       <key>
         <column name="conf_id" not-null="true" />
       </key>
-      <one-to-many class="com.datatransfer.ScheduleDTO" />
+      <one-to-many class="com.datatransfer.ConferenceScheduleDTO" />
     </set>
   </class>
 </hibernate-mapping>

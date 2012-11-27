@@ -18,6 +18,7 @@ public class ConferenceDTO implements Serializable{
   private String title,description,location;
   private int confDate, submissionDate, reviewDate, lastUpdatedDate;
   private Set<TopicDTO> topics = new HashSet<TopicDTO>(0);
+  private Set<ScheduleDTO> schedules = new HashSet<ScheduleDTO>(0);
 
   public ConferenceDTO(String title, String description, String location, int confDate, int submissionDate, int reviewDate, int lastUpdatedDate, Set<TopicDTO> topics) {
     this.title = title;
@@ -159,6 +160,15 @@ public class ConferenceDTO implements Serializable{
     this.topics = topics;
   }
 
+  public Set<ScheduleDTO> getSchedules() {
+    return schedules;
+  }
+
+  public void setSchedules(Set<ScheduleDTO> schedules) {
+    this.schedules = schedules;
+  }
+
+  
   @Override
   public String toString() {
     return "ConferenceDTO{" + "confId=" + confId + ", title=" + title + ", description=" + description + ", location=" + location + ", confDate=" + confDate + ", submissionDate=" + submissionDate + ", reviewDate=" + reviewDate + ", lastUpdatedDate=" + lastUpdatedDate + ", topics=" + topics + '}';
