@@ -1,0 +1,25 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+/CMSEJB/nbproject/private/
+/CMSEJBInterface/nbproject/private/
+/COMSEJB/nbproject/private/
+/CMSEJB/dist/
+/CMSEJB/build/
+/CMSEJBInterface/dist/
+/CMSEJBInterface/build/
+/COMSEJBInterface/nbproject/private/
+/COMSEJB/build/
+/COMSEJB/dist/
+/COMSEJBInterface/build/
+/COMSEJBInterface/dist/
+/COMSWEb/nbproject/private/
+/COMSWEb/build/
+/COMSWEb/dist/
+/COMSIFACE/build/
+/COMSIFACE/dist/
+/COMSIFACE/nbproject/private/
+/*.gitignore~
