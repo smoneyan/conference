@@ -11,6 +11,7 @@
     <property name="title" not-null="true" length="50" column="title" />
     <property name="description"  not-null="true" length="400" column="description" />
     <property name="location" not-null="true" length="50" column="location" />  
+    <!--<property name="price" not-null="true" column="price" />-->
     <property name="confDate"  not-null="false" column="conf_date" />  
     <property name="submissionDate" not-null="false" column="submission_last_dt" />  
     <property name="reviewDate" not-null="false" column="review_last_dt" />  
@@ -19,11 +20,11 @@
       <key column="conf_id" />
       <many-to-many column="topic_id" class="coms.datatransfer.TopicDTO" />
     </set>
-    <set name="schedules" table="schedule" lazy="true" fetch="select">
+    <set name="schedules" table="schedule" cascade="none">
       <key>
         <column name="conf_id" not-null="true" />
       </key>
-      <one-to-many class="com.datatransfer.ScheduleDTO" />
+      <one-to-many class="coms.datatransfer.ScheduleDTO"/>
     </set>
   </class>
 </hibernate-mapping>

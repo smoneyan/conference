@@ -5,7 +5,6 @@
 package coms.datatransfer;
 
 import java.io.Serializable;
-import java.util.AbstractSet;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,10 +16,12 @@ public class ConferenceDTO implements Serializable{
   private int confId;
   private String title,description,location;
   private int confDate, submissionDate, reviewDate, lastUpdatedDate;
-  private Set<TopicDTO> topics = new HashSet<TopicDTO>(0);
-  private Set<ScheduleDTO> schedules = new HashSet<ScheduleDTO>(0);
+  private Double price;
+  private Set<TopicDTO> topics = new HashSet<TopicDTO>();
+  private Set<ScheduleDTO> schedules = new HashSet<ScheduleDTO>();
 
-  public ConferenceDTO(String title, String description, String location, int confDate, int submissionDate, int reviewDate, int lastUpdatedDate, Set<TopicDTO> topics) {
+  public ConferenceDTO(int confId, String title, String description, String location, int confDate, int submissionDate, int reviewDate, int lastUpdatedDate, double price) {
+    this.confId = confId;
     this.title = title;
     this.description = description;
     this.location = location;
@@ -28,12 +29,23 @@ public class ConferenceDTO implements Serializable{
     this.submissionDate = submissionDate;
     this.reviewDate = reviewDate;
     this.lastUpdatedDate = lastUpdatedDate;
-    this.topics = topics;
+    this.price = price;
   }
 
+ 
   public ConferenceDTO() {
   }
 
+  public double getPrice() {
+    return price;
+  }
+
+  public void setPrice(double price) {
+    this.price = price;
+  }
+
+ 
+  
   /**
    * @return the confId
    */
@@ -168,11 +180,15 @@ public class ConferenceDTO implements Serializable{
     this.schedules = schedules;
   }
 
-  
   @Override
   public String toString() {
-    return "ConferenceDTO{" + "confId=" + confId + ", title=" + title + ", description=" + description + ", location=" + location + ", confDate=" + confDate + ", submissionDate=" + submissionDate + ", reviewDate=" + reviewDate + ", lastUpdatedDate=" + lastUpdatedDate + ", topics=" + topics + '}';
+    return "ConferenceDTO{" + "confId=" + confId + ", title=" + title + ", description=" + description + ", location=" + location + ", confDate=" + confDate + ", submissionDate=" + submissionDate + ", reviewDate=" + reviewDate + ", lastUpdatedDate=" + lastUpdatedDate + ", price=" + price + ", topics=" + topics + ", schedules=" + schedules + '}';
   }
+
+
+
+  
+
  
   
 }

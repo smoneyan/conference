@@ -8,6 +8,8 @@ public abstract class DAOFactory {
     public abstract ConferenceDAO getConferenceDAO();
     public abstract ScheduleDAO getScheduleDAO();
     public abstract ItemTypeDAO getItemTypeDAO();
+    public abstract FileDAO getFileDAO();
+    public abstract SubmissionDAO getSubmissionDAO();
     
     private static DAOFactory instance;
     

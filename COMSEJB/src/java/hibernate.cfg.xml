@@ -51,6 +51,7 @@
     <mapping resource="conference.hbm.xml" />
     <mapping resource="schedule.hbm.xml" />
     <mapping resource="item_type.hbm.xml" />
+    <mapping resource="file.hbm.xml" />
     <mapping resource="submission.hbm.xml" />
   </session-factory>
 </hibernate-configuration>

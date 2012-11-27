@@ -4,7 +4,7 @@
  */
 package coms.iface;
 
-import java.util.List;
+import coms.datatransfer.UserDTO;
 import javax.ejb.Remote;
 
 /**
@@ -13,5 +13,5 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface ComsManagerRemote {
-   
+   public java.util.List<UserDTO> getAllConference();
 }

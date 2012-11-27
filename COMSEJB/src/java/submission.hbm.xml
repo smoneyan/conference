@@ -3,20 +3,24 @@
 "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping default-lazy="false">
-  <class name="coms.datatransfer.ScheduleDTO" table="schedule">
-    <meta attribute="class-description"> Conference schedule details </meta>
-    <id name="scheduleId" column="schedule_id">
+  <class name="coms.datatransfer.SubmissionDTO" table="item_submission">
+    <meta attribute="class-description"> Item submission details </meta>
+    <id name="submissionId" column="item_id">
       <generator class="native" />
     </id>
-    <property name="scheduleName" not-null="true" column="title" />
-    <property name="startTime" not-null="true" column="start_dt" />
-    <property name="endTime" not-null="true" column="end_dt" />
-    <many-to-one name="conference" class="com.datatransfer.ConferenceDTO" fetch="select">
-      <column name="conf_id" not-null="true" />
+    <many-to-one name="confSchedule" class="coms.datatransfer.ScheduleDTO" fetch="select">
+      <column name="schedule_id" not-null="true" />
     </many-to-one>
-    <many-to-one name="itemType" class="com.datatransferItemTypeDTO" fetch="select">
-      <column name="type_id" not-null="true" />
-    </many-to-one>  
-    
+    <property name="title" not-null="true" column="title" />
+    <many-to-one name="submittedUser" class="coms.datatransfer.UserDTO" fetch="select">
+      <column name="submitted_by" not-null="true" />
+    </many-to-one>
+    <property name="description" not-null="true" column="description" />
+    <many-to-one name="file" class="coms.datatransfer.FileDTO" fetch="select">
+      <column name="fid" not-null="true" />
+    </many-to-one>
+    <property name="status" not-null="true" column="status" />
+    <property name="blindReview" not-null="true" column="blind_review" />
+    <property name="email" not-null="true" column="contact_email" />
   </class>
 </hibernate-mapping>

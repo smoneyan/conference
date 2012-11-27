@@ -6,9 +6,11 @@ package coms.dataaccess.hibernate;
 
 import coms.dataaccess.ConferenceDAO;
 import coms.dataaccess.DAOFactory;
+import coms.dataaccess.FileDAO;
 import coms.dataaccess.ItemTypeDAO;
 import coms.dataaccess.RoleDAO;
 import coms.dataaccess.ScheduleDAO;
+import coms.dataaccess.SubmissionDAO;
 import coms.dataaccess.TopicDAO;
 import coms.dataaccess.UserDAO;
 
@@ -24,6 +26,8 @@ public class DAOFactoryImpl extends DAOFactory {
   private ConferenceDAO conferenceDAO = new ConferenceDAOImpl();
   private ScheduleDAO scheduleDAO = new ScheduleDAOImpl();
   private ItemTypeDAO itemTypeDAO = new ItemTypeDAOImpl();
+  private FileDAO fileDAO = new FileDAOImpl();
+  private SubmissionDAO submissionDAO = new SubmissionDAOImpl();
 
   @Override
   public UserDAO getUserDAO() {
@@ -53,6 +57,16 @@ public class DAOFactoryImpl extends DAOFactory {
   @Override
   public ItemTypeDAO getItemTypeDAO() {
     return itemTypeDAO;
+  }
+
+  @Override
+  public FileDAO getFileDAO() {
+    return fileDAO;
+  }
+
+  @Override
+  public SubmissionDAO getSubmissionDAO() {
+    return submissionDAO;
   }
   
   

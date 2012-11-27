@@ -6,8 +6,7 @@ package coms.dataaccess.hibernate;
 
 import coms.dataaccess.DAOException;
 import coms.dataaccess.DAOFactory;
-import coms.dataaccess.ItemTypeDAO;
-import coms.datatransfer.ItemTypeDTO;
+import coms.dataaccess.ScheduleDAO;
 import coms.datatransfer.ScheduleDTO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,25 +29,35 @@ public class TestClass {
 //      for(TopicDTO topic : topics){
 //        System.out.println(topic);
 //      }
-//       ConferenceDAO confDao = DAOFactory.getInstance().getConferenceDAO();
-//       ConferenceDTO[] conf = confDao.findAllConference();
-//       for(ConferenceDTO c : conf){
-//         System.out.println(c);
-//       }
+//      ConferenceDAO confDao = DAOFactory.getInstance().getConferenceDAO();
+//      ConferenceDTO[] conf = confDao.findAllConference();
+//      for (ConferenceDTO c : conf) {
+//        System.out.println(c);
+//      }
 
-//       ScheduleDAO scheduleDao = DAOFactory.getInstance().getScheduleDAO();
-//       ScheduleDTO[] sched = scheduleDao.findAllSchedules();
-//       for(ScheduleDTO s : sched){
-//         System.out.println(s);
-//       }
+       ScheduleDAO scheduleDao = DAOFactory.getInstance().getScheduleDAO();
+       ScheduleDTO[] sched = scheduleDao.findAllSchedules();
+       for(ScheduleDTO s : sched){
+         System.out.println(s);
+       }
 
-      ItemTypeDAO itemTypeDao = DAOFactory.getInstance().getItemTypeDAO();
-      ItemTypeDTO[] itemTypes = itemTypeDao.findAllItemTypes();
-      for (ItemTypeDTO s : itemTypes) {
-        System.out.println(s);
-      }
+//      ItemTypeDAO itemTypeDao = DAOFactory.getInstance().getItemTypeDAO();
+//      ItemTypeDTO[] itemTypes = itemTypeDao.findAllItemTypes();
+//      for (ItemTypeDTO s : itemTypes) {
+//        System.out.println(s);
+//      }
 
+//      FileDAO fileDao = DAOFactory.getInstance().getFileDAO();
+//      FileDTO[] files = fileDao.findAllFile();
+//      for (FileDTO c : files) {
+//        System.out.println(c);
+//      }
 
+//        SubmissionDAO submissionDao = DAOFactory.getInstance().getSubmissionDAO();
+//      SubmissionDTO[] submissions = submissionDao.findAllSubmission();
+//      for (SubmissionDTO c : submissions) {
+//        System.out.println(c);
+//      }
 
     } catch (DAOException ex) {
       Logger.getLogger(TestClass.class.getName()).log(Level.SEVERE, null, ex);

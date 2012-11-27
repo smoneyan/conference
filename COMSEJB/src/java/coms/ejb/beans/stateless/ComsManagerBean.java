@@ -4,16 +4,17 @@
  */
 package coms.ejb.beans.stateless;
 
-import coms.dataaccess.ConferenceDAO;
 import coms.dataaccess.DAOException;
 import coms.dataaccess.DAOFactory;
+import coms.dataaccess.UserDAO;
 import coms.datatransfer.ConferenceDTO;
+import coms.datatransfer.UserDTO;
 import coms.ejb.beans.ComsManagerBeanLocal;
-import java.io.Serializable;
+import coms.iface.ComsManagerRemote;
 import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 /**
@@ -21,15 +22,16 @@ import javax.ejb.Stateless;
  * @author subu
  */
 @Stateless(mappedName="ComsManagerBean")
-public class ComsManagerBean implements ComsManagerBeanLocal, Serializable {
+public class ComsManagerBean implements ComsManagerRemote {
 
   @Override
-  public java.util.List<ConferenceDTO> getAllConference() {
-    ConferenceDTO[] conf = null;
+  public java.util.List<UserDTO> getAllConference() {
+    List<UserDTO> conf = null;
     try {
-      ConferenceDAO confDao = DAOFactory.getInstance().getConferenceDAO();
-      conf = confDao.findAllConference();
-      return Arrays.asList(conf);
+      System.out.println("getAllConference");
+      UserDAO confDao = DAOFactory.getInstance().getUserDAO();
+      conf = Arrays.asList(confDao.findAllUser());
+      return conf;
     }
     catch (DAOException ex) {
       Logger.getLogger(ComsManagerBean.class.getName()).log(Level.SEVERE, null, ex);
@@ -40,5 +42,7 @@ public class ComsManagerBean implements ComsManagerBeanLocal, Serializable {
 
   // Add business logic below. (Right-click in editor and choose
   // "Insert Code > Add Business Method")
+
+ 
   
 }

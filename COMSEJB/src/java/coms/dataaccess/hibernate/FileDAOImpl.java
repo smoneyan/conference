@@ -5,7 +5,8 @@
 package coms.dataaccess.hibernate;
 
 import coms.dataaccess.DAOException;
-import coms.dataaccess.UserDAO;
+import coms.dataaccess.FileDAO;
+import coms.datatransfer.FileDTO;
 import coms.datatransfer.UserDTO;
 import coms.exceptions.HibernateAccessLayerException;
 import java.util.List;
@@ -16,13 +17,13 @@ import java.util.logging.Logger;
  *
  * @author subu
  */
-public class UserDAOImpl extends AbstractDao implements UserDAO {
+public class FileDAOImpl extends AbstractDao implements FileDAO {
 
   @Override
-  public UserDTO findUser(String userName) throws DAOException {
-    try {
-      Logger.getLogger(getClass().getName()).log(Level.INFO, "Finding User" + userName);
-      UserDTO p = (UserDTO) super.find(UserDTO.class, userName);
+  public FileDTO findFile(int fid) throws DAOException {
+     try {
+      Logger.getLogger(getClass().getName()).log(Level.INFO, "Finding file" + fid);
+      FileDTO p = (FileDTO) super.find(FileDTO.class, fid);
       return p;
     } catch (Throwable t) {
       throw new HibernateAccessLayerException(t.toString());
@@ -31,12 +32,11 @@ public class UserDAOImpl extends AbstractDao implements UserDAO {
   }
 
   @Override
-  public UserDTO[] findAllUser() throws DAOException {
-    try {
-      System.out.println("findAllUser dao");
-      List users = super.findAll(UserDTO.class);
-      UserDTO[] result = new UserDTO[users.size()];
-      users.toArray(result);
+  public FileDTO[] findAllFile() throws DAOException {
+     try {
+      List files = super.findAll(FileDTO.class);
+      FileDTO[] result = new FileDTO[files.size()];
+      files.toArray(result);
       return (result);
     } catch (Throwable t) {
       t.printStackTrace();
@@ -45,9 +45,9 @@ public class UserDAOImpl extends AbstractDao implements UserDAO {
   }
 
   @Override
-  public void insertUser(UserDTO user) throws DAOException {
+  public void insertFile(FileDTO file) throws DAOException {
     try {
-      super.saveOrUpdate(user);
+      super.saveOrUpdate(file);
     } catch (Throwable t) {
       t.printStackTrace();
       throw new HibernateAccessLayerException(t.toString());
@@ -55,23 +55,26 @@ public class UserDAOImpl extends AbstractDao implements UserDAO {
   }
 
   @Override
-  public void updateUser(UserDTO user) throws DAOException {
-    try {
-      super.saveOrUpdate(user);
+  public void updateFile(FileDTO file) throws DAOException {
+     try {
+      Logger.getLogger(getClass().getName()).log(Level.INFO, "Updating file" + file.getFid());
+      super.saveOrUpdate(file);
     } catch (Throwable t) {
-      t.printStackTrace();
       throw new HibernateAccessLayerException(t.toString());
+
     }
   }
 
   @Override
-  public void deleteUser(UserDTO user) throws DAOException {
-    try {
-      Logger.getLogger(getClass().getName()).log(Level.INFO, "Deleting User" + user.getUsername());
-      super.delete(user);
+  public void deleteFile(FileDTO file) throws DAOException {
+      try {
+      Logger.getLogger(getClass().getName()).log(Level.INFO, "Deleting file" + file.getFid());
+      super.delete(file);
     } catch (Throwable t) {
       throw new HibernateAccessLayerException(t.toString());
 
     }
   }
+
+ 
 }

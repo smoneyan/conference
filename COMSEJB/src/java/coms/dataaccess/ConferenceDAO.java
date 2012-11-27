@@ -5,7 +5,6 @@
 package coms.dataaccess;
 
 import coms.datatransfer.ConferenceDTO;
-import coms.datatransfer.TopicDTO;
 
 /**
  *

@@ -14,6 +14,7 @@ import java.util.List;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
 import coms.delegates.ComsManagerDelegate;
+import coms.delegates.ComsMessageDelegate;
 
 
 
@@ -28,9 +29,10 @@ public class EmailAction extends ComsSupport {
 
 	public String execute() throws Exception {
             System.out.println("inside email");
-            ComsManagerDelegate comsDel=new ComsManagerDelegate();
-            
-            comsDel.notifyEvents();
+           // ComsMessageDelegate comsDel=new ComsMessageDelegate();
+            ComsManagerDelegate mgr = new ComsManagerDelegate();
+            System.out.println(mgr.getAllConference());
+           // comsDel.notifyEvents();
             return "success";
         }
 }

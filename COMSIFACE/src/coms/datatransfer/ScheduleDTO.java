@@ -11,6 +11,7 @@ package coms.datatransfer;
 public class ScheduleDTO {
   private int scheduleId;
   private String scheduleName;
+  private double price;
   private int startTime, endTime;
   private ConferenceDTO conference;
   private ItemTypeDTO itemType;
@@ -18,11 +19,22 @@ public class ScheduleDTO {
   public ScheduleDTO() {
   }
 
-  public ScheduleDTO(int scheduleId, String scheduleName, int startTime, int endTime) {
+  public ScheduleDTO(int scheduleId, String scheduleName, double price, int startTime, int endTime, ConferenceDTO conference, ItemTypeDTO itemType) {
     this.scheduleId = scheduleId;
     this.scheduleName = scheduleName;
+    this.price = price;
     this.startTime = startTime;
     this.endTime = endTime;
+    this.conference = conference;
+    this.itemType = itemType;
+  }
+
+  public double getPrice() {
+    return price;
+  }
+
+  public void setPrice(double price) {
+    this.price = price;
   }
 
   public int getStartTime() {
@@ -75,6 +87,8 @@ public class ScheduleDTO {
 
   @Override
   public String toString() {
-    return "ScheduleDTO{" + "scheduleId=" + scheduleId + ", scheduleName=" + scheduleName + ", startTime=" + startTime + ", endTime=" + endTime + '}';
-  }        
+    return "ScheduleDTO{" + "scheduleId=" + scheduleId + ", scheduleName=" + scheduleName + ", price=" + price + ", startTime=" + startTime + ", endTime=" + endTime + ", conference=" + conference + ", itemType=" + itemType + '}';
+  }
+
+       
 }
